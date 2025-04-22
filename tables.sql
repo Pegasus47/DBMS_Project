@@ -1,4 +1,4 @@
-SET DEFINE OFF;
+  SET DEFINE OFF;
 
 -- 1. Pharmaceutical companies
 CREATE TABLE pharma_comp (
@@ -108,3 +108,10 @@ CREATE TABLE contract (
     REFERENCES pharma_comp(name) ON DELETE CASCADE,
   CONSTRAINT chk_date_order CHECK (start_date < end_date)
 );
+
+-- 6.1 This is a view implementing good pharmacies
+CREATE VIEW pharmacies_good AS
+SELECT pharmacy_name
+FROM PharmacyDrug
+GROUP BY pharma_company_name
+HAVING COUNT(*) < 10;
