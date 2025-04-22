@@ -1,0 +1,2 @@
+SET serveroutput on;
+
