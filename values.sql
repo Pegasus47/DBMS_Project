@@ -106,6 +106,7 @@ INSERT INTO sells VALUES ('Cipla', 'Zyrtec', 'NovaChennai', 10.10);
 -- Insert Prescription
 -- -------------------------------
 INSERT INTO prescription VALUES ('101010101010', DATE '2023-12-01', '111122223333', 'Panadol', 'Pfizer', 10);
+INSERT INTO prescription VALUES ('101010101010', DATE '2023-12-01', '111122223333', 'Cetrizine', 'Cipla', 10);
 INSERT INTO prescription VALUES ('202020202020', DATE '2023-12-05', '444455556666', 'Cetrizine', 'Cipla', 5);
 INSERT INTO prescription VALUES ('303030303030', DATE '2023-12-10', '777788889999', 'Azee', 'SunPharma', 7);
 INSERT INTO prescription VALUES ('404040404040', DATE '2023-12-15', '111122223333', 'Montair', 'Cipla', 6);

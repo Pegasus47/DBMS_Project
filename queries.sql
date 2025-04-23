@@ -25,32 +25,40 @@ END;
 
 CREATE OR REPLACE PROCEDURE get_prescription_details (
   p_aadhar_patient IN VARCHAR2,
-  p_presc_date IN DATE
+  p_presc_date     IN DATE
 ) IS
 BEGIN
   FOR rec IN (
     SELECT 
-      p.name AS patient_name,
+      p.name           AS patient_name,
       pr.presc_date,
-      d.name AS doctor_name,
-      dr.trade_name,
-      dr.pharma_company_name,
-      pr.qty
+      d.name           AS doctor_name,
+      LISTAGG(
+        dr.trade_name 
+        || ' (' || dr.pharma_company_name || ') x' || pr.qty,
+        CHR(10)
+      ) WITHIN GROUP (ORDER BY dr.trade_name) AS meds_list
     FROM 
       prescription pr
-      JOIN patients p ON p.aadhar_no = pr.aadhar_patient
-      JOIN doctors d ON d.aadhar_no = pr.aadhar_doctor
-      JOIN drugs dr ON dr.trade_name = pr.trade_name AND dr.pharma_company_name = pr.pharma_name
+      JOIN patients p 
+        ON p.aadhar_no = pr.aadhar_patient
+      JOIN doctors d 
+        ON d.aadhar_no = pr.aadhar_doctor
+      JOIN drugs dr 
+        ON dr.trade_name          = pr.trade_name 
+       AND dr.pharma_company_name = pr.pharma_name
     WHERE 
       pr.aadhar_patient = p_aadhar_patient
-      AND pr.presc_date = p_presc_date
+      AND pr.presc_date  = p_presc_date
+    GROUP BY 
+      p.name, pr.presc_date, d.name
   ) LOOP
-    DBMS_OUTPUT.PUT_LINE('Patient: ' || rec.patient_name);
-    DBMS_OUTPUT.PUT_LINE('Date: ' || rec.presc_date);
-    DBMS_OUTPUT.PUT_LINE('Doctor: ' || rec.doctor_name);
-    DBMS_OUTPUT.PUT_LINE('Drug: ' || rec.trade_name || ' (' || rec.pharma_company_name || ')');
-    DBMS_OUTPUT.PUT_LINE('Quantity: ' || rec.qty);
-    DBMS_OUTPUT.PUT_LINE('-----------------------------');
+    DBMS_OUTPUT.PUT_LINE('Patient : ' || rec.patient_name);
+    DBMS_OUTPUT.PUT_LINE('Date    : ' || TO_CHAR(rec.presc_date, 'DD-MON-YYYY'));
+    DBMS_OUTPUT.PUT_LINE('Doctor  : ' || rec.doctor_name);
+    DBMS_OUTPUT.PUT_LINE('Medications:');
+    DBMS_OUTPUT.PUT_LINE(rec.meds_list);
+    DBMS_OUTPUT.PUT_LINE('--------------------------------------');
   END LOOP;
 END;
 /
