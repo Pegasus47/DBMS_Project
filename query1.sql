@@ -4,9 +4,9 @@
 
 -- Add Pharmacy
 CREATE OR REPLACE PROCEDURE add_pharmacy(
-  p_name IN VARCHAR2,
-  p_address IN VARCHAR2,
-  p_contact IN VARCHAR2
+  p_name IN VARCHAR,
+  p_address IN VARCHAR,
+  p_contact IN VARCHAR
 ) AS
 BEGIN
   INSERT INTO pharmacy(name, address, pharmacy_contact)
@@ -16,9 +16,9 @@ END;
 
 -- Replace (Update) Pharmacy
 CREATE OR REPLACE PROCEDURE update_pharmacy(
-  p_name IN VARCHAR2,
-  p_new_address IN VARCHAR2,
-  p_new_contact IN VARCHAR2
+  p_name IN VARCHAR,
+  p_new_address IN VARCHAR,
+  p_new_contact IN VARCHAR
 ) AS
 BEGIN
   UPDATE pharmacy
@@ -30,7 +30,7 @@ END;
 
 -- Delete Pharmacy
 CREATE OR REPLACE PROCEDURE delete_pharmacy(
-  p_name IN VARCHAR2
+  p_name IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM pharmacy WHERE name = p_name;
@@ -39,8 +39,8 @@ END;
 
 -- Add Pharma Company
 CREATE OR REPLACE PROCEDURE add_pharma_company(
-  p_name IN VARCHAR2,
-  p_contact IN VARCHAR2
+  p_name IN VARCHAR,
+  p_contact IN VARCHAR
 ) AS
 BEGIN
   INSERT INTO pharma_comp(name, contact_number)
@@ -50,8 +50,8 @@ END;
 
 -- Update Pharma Company
 CREATE OR REPLACE PROCEDURE update_pharma_company(
-  p_name IN VARCHAR2,
-  p_new_contact IN VARCHAR2
+  p_name IN VARCHAR,
+  p_new_contact IN VARCHAR
 ) AS
 BEGIN
   UPDATE pharma_comp
@@ -62,7 +62,7 @@ END;
 
 -- Delete Pharma Company
 CREATE OR REPLACE PROCEDURE delete_pharma_company(
-  p_name IN VARCHAR2
+  p_name IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM pharma_comp WHERE name = p_name;
@@ -71,9 +71,9 @@ END;
 
 -- Add Doctor
 CREATE OR REPLACE PROCEDURE add_doctor(
-  p_aadhar IN VARCHAR2,
-  p_name IN VARCHAR2,
-  p_specialty IN VARCHAR2,
+  p_aadhar IN VARCHAR,
+  p_name IN VARCHAR,
+  p_specialty IN VARCHAR,
   p_exp IN NUMBER
 ) AS
 BEGIN
@@ -84,9 +84,9 @@ END;
 
 -- Update Doctor
 CREATE OR REPLACE PROCEDURE update_doctor(
-  p_aadhar IN VARCHAR2,
-  p_name IN VARCHAR2,
-  p_specialty IN VARCHAR2,
+  p_aadhar IN VARCHAR,
+  p_name IN VARCHAR,
+  p_specialty IN VARCHAR,
   p_exp IN NUMBER
 ) AS
 BEGIN
@@ -100,7 +100,7 @@ END;
 
 -- Delete Doctor
 CREATE OR REPLACE PROCEDURE delete_doctor(
-  p_aadhar IN VARCHAR2
+  p_aadhar IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM doctors
@@ -110,11 +110,11 @@ END;
 
 -- Add Patient
 CREATE OR REPLACE PROCEDURE add_patient(
-  p_aadhar IN VARCHAR2,
-  p_name IN VARCHAR2,
+  p_aadhar IN VARCHAR,
+  p_name IN VARCHAR,
   p_age IN NUMBER,
-  p_address IN VARCHAR2,
-  p_doc_aadhar IN VARCHAR2
+  p_address IN VARCHAR,
+  p_doc_aadhar IN VARCHAR
 ) AS
 BEGIN
   INSERT INTO patients(aadhar_no, name, age, address, aadhar_d)
@@ -124,11 +124,11 @@ END;
 
 -- Update Patient
 CREATE OR REPLACE PROCEDURE update_patient(
-  p_aadhar IN VARCHAR2,
-  p_name IN VARCHAR2,
+  p_aadhar IN VARCHAR,
+  p_name IN VARCHAR,
   p_age IN NUMBER,
-  p_address IN VARCHAR2,
-  p_doc_aadhar IN VARCHAR2
+  p_address IN VARCHAR,
+  p_doc_aadhar IN VARCHAR
 ) AS
 BEGIN
   UPDATE patients
@@ -142,7 +142,7 @@ END;
 
 -- Delete Patient
 CREATE OR REPLACE PROCEDURE delete_patient(
-  p_aadhar IN VARCHAR2
+  p_aadhar IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM patients
@@ -152,9 +152,9 @@ END;
 
 -- Add Drug
 CREATE OR REPLACE PROCEDURE add_drug(
-  p_company IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
-  p_formula IN VARCHAR2
+  p_company IN VARCHAR,
+  p_trade_name IN VARCHAR,
+  p_formula IN VARCHAR
 ) AS
 BEGIN
   INSERT INTO drugs(pharma_company_name, trade_name, formula)
@@ -164,9 +164,9 @@ END;
 
 -- Update Drug
 CREATE OR REPLACE PROCEDURE update_drug(
-  p_company IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
-  p_new_formula IN VARCHAR2
+  p_company IN VARCHAR,
+  p_trade_name IN VARCHAR,
+  p_new_formula IN VARCHAR
 ) AS
 BEGIN
   UPDATE drugs
@@ -177,8 +177,8 @@ END;
 
 -- Delete Drug
 CREATE OR REPLACE PROCEDURE delete_drug(
-  p_company IN VARCHAR2,
-  p_trade_name IN VARCHAR2
+  p_company IN VARCHAR,
+  p_trade_name IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM drugs
@@ -224,11 +224,11 @@ END;
 
 -- Add Prescription
 CREATE OR REPLACE PROCEDURE add_prescription(
-  p_patient_aadhar IN VARCHAR2,
+  p_patient_aadhar IN VARCHAR,
   p_date IN DATE,
-  p_doctor_aadhar IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
-  p_pharma_name IN VARCHAR2,
+  p_doctor_aadhar IN VARCHAR,
+  p_trade_name IN VARCHAR,
+  p_pharma_name IN VARCHAR,
   p_qty IN NUMBER
 ) AS
 BEGIN
@@ -239,11 +239,11 @@ END;
 
 -- Update Prescription
 CREATE OR REPLACE PROCEDURE update_prescription(
-  p_patient_aadhar IN VARCHAR2,
+  p_patient_aadhar IN VARCHAR,
   p_date IN DATE,
-  p_doctor_aadhar IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
-  p_pharma_name IN VARCHAR2,
+  p_doctor_aadhar IN VARCHAR,
+  p_trade_name IN VARCHAR,
+  p_pharma_name IN VARCHAR,
   p_new_qty IN NUMBER
 ) AS
 BEGIN
@@ -259,11 +259,11 @@ END;
 
 -- Delete Prescription
 CREATE OR REPLACE PROCEDURE delete_prescription(
-  p_patient_aadhar IN VARCHAR2,
+  p_patient_aadhar IN VARCHAR,
   p_date IN DATE,
-  p_doctor_aadhar IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
-  p_pharma_name IN VARCHAR2
+  p_doctor_aadhar IN VARCHAR,
+  p_trade_name IN VARCHAR,
+  p_pharma_name IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM prescription
@@ -277,10 +277,10 @@ END;
 
 -- Add Patient Drug
 CREATE OR REPLACE PROCEDURE add_patient_drug(
-  p_pharma_name IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
+  p_pharma_name IN VARCHAR,
+  p_trade_name IN VARCHAR,
   p_date IN DATE,
-  p_aadhar IN VARCHAR2,
+  p_aadhar IN VARCHAR,
   p_quantity IN NUMBER
 ) AS
 BEGIN
@@ -291,10 +291,10 @@ END;
 
 -- Update Patient Drug
 CREATE OR REPLACE PROCEDURE update_patient_drug(
-  p_pharma_name IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
+  p_pharma_name IN VARCHAR,
+  p_trade_name IN VARCHAR,
   p_date IN DATE,
-  p_aadhar IN VARCHAR2,
+  p_aadhar IN VARCHAR,
   p_new_quantity IN NUMBER
 ) AS
 BEGIN
@@ -309,10 +309,10 @@ END;
 
 -- Delete Patient Drug
 CREATE OR REPLACE PROCEDURE delete_patient_drug(
-  p_pharma_name IN VARCHAR2,
-  p_trade_name IN VARCHAR2,
+  p_pharma_name IN VARCHAR,
+  p_trade_name IN VARCHAR,
   p_date IN DATE,
-  p_aadhar IN VARCHAR2
+  p_aadhar IN VARCHAR
 ) AS
 BEGIN
   DELETE FROM patient_drugs

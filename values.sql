@@ -105,13 +105,45 @@ INSERT INTO sells VALUES ('Cipla', 'Zyrtec', 'NovaChennai', 10.10);
 -- -------------------------------
 -- Insert Prescription
 -- -------------------------------
-INSERT INTO prescription VALUES ('101010101010', DATE '2023-12-01', '111122223333', 'Panadol', 'Pfizer', 10);
-INSERT INTO prescription VALUES ('101010101010', DATE '2023-12-01', '111122223333', 'Cetrizine', 'Cipla', 10);
-INSERT INTO prescription VALUES ('202020202020', DATE '2023-12-05', '444455556666', 'Cetrizine', 'Cipla', 5);
-INSERT INTO prescription VALUES ('303030303030', DATE '2023-12-10', '777788889999', 'Azee', 'SunPharma', 7);
-INSERT INTO prescription VALUES ('404040404040', DATE '2023-12-15', '111122223333', 'Montair', 'Cipla', 6);
-INSERT INTO prescription VALUES ('505050505050', DATE '2023-12-18', '999900001111', 'Dolo', 'DrReddy', 8);
-INSERT INTO prescription VALUES ('606060606060', DATE '2023-12-20', '555566667777', 'T-Minic', 'SunPharma', 5);
+INSERT INTO prescription VALUES 
+  ('101010101010', DATE '2024-01-05', '111122223333', 'Azithro',   'Pfizer',    5);
+INSERT INTO prescription VALUES 
+  ('101010101010', DATE '2024-01-05', '111122223333', 'Calpol',    'SunPharma', 4);
+INSERT INTO prescription VALUES 
+  ('101010101010', DATE '2024-01-05', '111122223333', 'Levocet',   'DrReddy',   3);
+
+INSERT INTO prescription VALUES 
+  ('101010101010', DATE '2024-02-10', '444455556666', 'Montair',   'Cipla',     6);
+INSERT INTO prescription VALUES 
+  ('101010101010', DATE '2024-02-10', '444455556666', 'Panadol',   'Pfizer',    12);
+
+INSERT INTO prescription VALUES 
+  ('202020202020', DATE '2023-12-05', '444455556666', 'Montair',   'Cipla',     7);
+INSERT INTO prescription VALUES 
+  ('202020202020', DATE '2023-12-05', '444455556666', 'Augmentin', 'Pfizer',    6);
+
+INSERT INTO prescription VALUES 
+  ('202020202020', DATE '2024-03-15', '444455556666', 'Zyrtec',    'Cipla',     4);
+
+INSERT INTO prescription VALUES 
+  ('303030303030', DATE '2024-01-20', '777788889999', 'Azee',      'SunPharma', 5);
+INSERT INTO prescription VALUES 
+  ('303030303030', DATE '2024-01-20', '777788889999', 'Dolo',      'DrReddy',   8);
+
+INSERT INTO prescription VALUES 
+  ('404040404040', DATE '2023-12-15', '111122223333', 'Zyrtec',    'Cipla',     3);
+
+
+INSERT INTO prescription VALUES 
+  ('404040404040', DATE '2024-04-01', '111122223333', 'T-Minic',   'SunPharma', 4);
+
+INSERT INTO prescription VALUES 
+  ('505050505050', DATE '2024-02-28', '999900001111', 'Panadol',   'Pfizer',    10);
+INSERT INTO prescription VALUES 
+  ('505050505050', DATE '2024-02-28', '999900001111', 'Metrogyl',  'Lupin',     5);
+
+INSERT INTO prescription VALUES 
+  ('606060606060', DATE '2024-03-05', '555566667777', 'Levocet',   'DrReddy',   6);
 
 -- -------------------------------
 -- Insert Patient Drug Purchases
