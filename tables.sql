@@ -110,8 +110,12 @@ CREATE TABLE contract (
 );
 
 -- 6.1 This is a view implementing good pharmacies
-CREATE VIEW pharmacies_good AS
-SELECT pharmacy_name
-FROM PharmacyDrug
-GROUP BY pharma_company_name
-HAVING COUNT(*) < 10;
+CREATE OR REPLACE VIEW pharmacies_good AS
+SELECT DISTINCT pharmacy_name
+FROM sells
+GROUP BY pharmacy_name
+HAVING COUNT(DISTINCT trade_name) >= 10;
+
+create or replace view display_pharmacy_good AS
+SELECT P.* from pharmacy P JOIN pharmacies_good G ON P.name = G.pharmacy_name;
+
