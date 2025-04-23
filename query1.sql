@@ -1,8 +1,4 @@
--- -------------------------------
--- Stored Procedures
--- -------------------------------
-
--- Add Pharmacy
+-- add pharmacy
 CREATE OR REPLACE PROCEDURE add_pharmacy(
   p_name IN VARCHAR,
   p_address IN VARCHAR,
@@ -14,7 +10,7 @@ BEGIN
 END;
 /
 
--- Replace (Update) Pharmacy
+-- update Pharmacy
 CREATE OR REPLACE PROCEDURE update_pharmacy(
   p_name IN VARCHAR,
   p_new_address IN VARCHAR,
@@ -186,6 +182,7 @@ BEGIN
 END;
 /
 
+-- add sells
 CREATE OR REPLACE PROCEDURE add_sells(
   p_pharma_name IN VARCHAR,
   p_trade_name IN VARCHAR,
@@ -198,6 +195,7 @@ BEGIN
 END;
 /
 
+-- update sells
 CREATE OR REPLACE PROCEDURE update_sells(
   p_pharma_name IN VARCHAR,
   p_trade_name IN VARCHAR,
@@ -211,6 +209,7 @@ BEGIN
 END;
 /
 
+-- delete sells
 CREATE OR REPLACE PROCEDURE delete_sells(
   p_pharma_name IN VARCHAR,
   p_trade_name IN VARCHAR,
@@ -323,6 +322,7 @@ BEGIN
 END;
 /
 
+-- add contract
 CREATE OR REPLACE PROCEDURE add_contract(
   p_pharmacy_name IN VARCHAR,
   p_pharma_comp_name IN VARCHAR,
@@ -337,6 +337,7 @@ BEGIN
 END;
 /
 
+--update contract
 CREATE OR REPLACE PROCEDURE update_contract(
   p_pharmacy_name IN VARCHAR,
   p_pharma_comp_name IN VARCHAR,
@@ -355,6 +356,7 @@ BEGIN
 END;
 /
 
+--delete contract
 CREATE OR REPLACE PROCEDURE delete_contract(
   p_pharmacy_name IN VARCHAR,
   p_pharma_comp_name IN VARCHAR

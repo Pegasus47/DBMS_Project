@@ -1,3 +1,4 @@
+-- 4) drugs produced by a pharma_comp
 CREATE OR REPLACE PROCEDURE company_drugs (
     company_name in VARCHAR
 ) 
@@ -23,6 +24,7 @@ IS
 END;
 /
 
+-- 3) details of prescription on a given date
 CREATE OR REPLACE PROCEDURE get_prescription_details (
   p_aadhar_patient IN VARCHAR2,
   p_presc_date     IN DATE
@@ -63,6 +65,7 @@ BEGIN
 END;
 /
 
+--6) contact details of pharmacy-pharmacomp
 CREATE OR REPLACE PROCEDURE get_contact (
     cname IN VARCHAR
 )
@@ -101,7 +104,7 @@ BEGIN
 END;
 /
 
-
+-- 2) report of prescriptions between dates
 CREATE OR REPLACE PROCEDURE get_patient_report (
     p_id        IN VARCHAR2,
     start_date  IN DATE,
@@ -151,6 +154,7 @@ BEGIN
 END;
 /
 
+-- 5) stock position of a pharmacy
 CREATE OR REPLACE PROCEDURE get_pharmacy_stock (
   p_pharmacy_name IN VARCHAR2
 ) IS
@@ -172,6 +176,7 @@ BEGIN
 END;
 /
 
+-- 7) get patients for a doctor 
 CREATE OR REPLACE PROCEDURE get_patients_of_doctor (
   p_doctor_aadhar IN VARCHAR2
 ) IS
