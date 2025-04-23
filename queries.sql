@@ -109,7 +109,6 @@ CREATE OR REPLACE PROCEDURE get_patient_report (
 )
 IS
 BEGIN
-  -- Header with patient name
   DECLARE
     v_name patients.name%TYPE;
   BEGIN
@@ -127,7 +126,6 @@ BEGIN
       RETURN;
   END;
 
-  -- Main aggregated loop
   FOR rec IN (
     SELECT
       pr.presc_date,

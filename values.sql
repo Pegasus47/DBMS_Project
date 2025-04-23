@@ -32,29 +32,24 @@ INSERT INTO drugs VALUES ('Pfizer', 'Augmentin', 'Amoxicillin + Clavulanic Acid'
 INSERT INTO drugs VALUES ('SunPharma', 'T-Minic', 'Chlorpheniramine + Paracetamol');
 INSERT INTO drugs VALUES ('Lupin', 'Moxikind', 'Amoxicillin 500mg');
 
-
--- -------------------------------
--- Insert Doctors
--- -------------------------------
+--doctors
 INSERT INTO doctors VALUES ('111122223333', 'Dr. A Sharma', 'General Physician', 10);
 INSERT INTO doctors VALUES ('444455556666', 'Dr. M Iyer', 'Pulmonologist', 15);
 INSERT INTO doctors VALUES ('777788889999', 'Dr. K Mehta', 'Pediatrician', 12);
 INSERT INTO doctors VALUES ('999900001111', 'Dr. R Das', 'Cardiologist', 20);
 INSERT INTO doctors VALUES ('555566667777', 'Dr. L Khan', 'Dermatologist', 8);
 
--- -------------------------------
--- Insert Patients
--- -------------------------------
+-- Patients
 INSERT INTO patients VALUES ('101010101010', 'Ravi Kumar', 30, 'Secunderabad', '111122223333');
 INSERT INTO patients VALUES ('202020202020', 'Sneha Rao', 25, 'Delhi NCR', '444455556666');
 INSERT INTO patients VALUES ('303030303030', 'Aditya Jain', 40, 'Powai, Mumbai', '777788889999');
 INSERT INTO patients VALUES ('404040404040', 'Meera Patil', 32, 'Worli, Mumbai', '111122223333');
 INSERT INTO patients VALUES ('505050505050', 'Nisha Shah', 28, 'Ahmedabad', '999900001111');
 INSERT INTO patients VALUES ('606060606060', 'Rahul Yadav', 35, 'Lucknow', '555566667777');
--- -------------------------------
--- Insert Sells (Ensure at least 10 drugs per pharmacy)
--- -------------------------------
--- NovaHyd
+
+-- Sells table
+
+-- Hyd
 INSERT INTO sells VALUES ('Pfizer', 'Panadol', 'NovaHyd', 12.50);
 INSERT INTO sells VALUES ('Pfizer', 'Azithro', 'NovaHyd', 18.00);
 INSERT INTO sells VALUES ('Cipla', 'Cetrizine', 'NovaHyd', 10.00);
@@ -66,7 +61,7 @@ INSERT INTO sells VALUES ('DrReddy', 'Dolo', 'NovaHyd', 8.50);
 INSERT INTO sells VALUES ('Lupin', 'Zifi', 'NovaHyd', 14.00);
 INSERT INTO sells VALUES ('Lupin', 'Metrogyl', 'NovaHyd', 13.00);
 
--- NovaDelhi
+-- Delhi
 INSERT INTO sells VALUES ('Pfizer', 'Panadol', 'NovaDelhi', 13.00);
 INSERT INTO sells VALUES ('Cipla', 'Cetrizine', 'NovaDelhi', 10.50);
 INSERT INTO sells VALUES ('SunPharma', 'Calpol', 'NovaDelhi', 11.50);
@@ -78,7 +73,7 @@ INSERT INTO sells VALUES ('Lupin', 'Zifi', 'NovaDelhi', 15.00);
 INSERT INTO sells VALUES ('Lupin', 'Moxikind', 'NovaDelhi', 17.50);
 INSERT INTO sells VALUES ('Cipla', 'Zyrtec', 'NovaDelhi', 10.25);
 
--- NovaMumbai
+-- mumbai
 INSERT INTO sells VALUES ('Cipla', 'Montair', 'NovaMumbai', 21.00);
 INSERT INTO sells VALUES ('Pfizer', 'Azithro', 'NovaMumbai', 19.00);
 INSERT INTO sells VALUES ('DrReddy', 'Levocet', 'NovaMumbai', 9.20);
@@ -90,7 +85,7 @@ INSERT INTO sells VALUES ('SunPharma', 'T-Minic', 'NovaMumbai', 11.50);
 INSERT INTO sells VALUES ('Pfizer', 'Augmentin', 'NovaMumbai', 27.00);
 INSERT INTO sells VALUES ('Lupin', 'Moxikind', 'NovaMumbai', 16.00);
 
--- NovaChennai
+-- Chennai
 INSERT INTO sells VALUES ('Cipla', 'Montair', 'NovaChennai', 20.25);
 INSERT INTO sells VALUES ('Pfizer', 'Panadol', 'NovaChennai', 12.80);
 INSERT INTO sells VALUES ('DrReddy', 'Dolo', 'NovaChennai', 9.00);
@@ -102,9 +97,7 @@ INSERT INTO sells VALUES ('SunPharma', 'Azee', 'NovaChennai', 22.10);
 INSERT INTO sells VALUES ('SunPharma', 'T-Minic', 'NovaChennai', 11.60);
 INSERT INTO sells VALUES ('Cipla', 'Zyrtec', 'NovaChennai', 10.10);
 
--- -------------------------------
--- Insert Prescription
--- -------------------------------
+--Prescription
 INSERT INTO prescription VALUES 
   ('101010101010', DATE '2024-01-05', '111122223333', 'Azithro',   'Pfizer',    5);
 INSERT INTO prescription VALUES 
@@ -145,9 +138,9 @@ INSERT INTO prescription VALUES
 INSERT INTO prescription VALUES 
   ('606060606060', DATE '2024-03-05', '555566667777', 'Levocet',   'DrReddy',   6);
 
--- -------------------------------
--- Insert Patient Drug Purchases
--- -------------------------------
+
+-- Patient Drug Use
+
 INSERT INTO patient_drugs VALUES ('Pfizer', 'Panadol', DATE '2023-12-01', '101010101010', 10);
 INSERT INTO patient_drugs VALUES ('Cipla', 'Cetrizine', DATE '2023-12-05', '202020202020', 5);
 INSERT INTO patient_drugs VALUES ('SunPharma', 'Azee', DATE '2023-12-10', '303030303030', 7);
@@ -155,7 +148,7 @@ INSERT INTO patient_drugs VALUES ('Cipla', 'Montair', DATE '2023-12-15', '404040
 INSERT INTO patient_drugs VALUES ('DrReddy', 'Dolo', DATE '2023-12-18', '505050505050', 8);
 INSERT INTO patient_drugs VALUES ('SunPharma', 'T-Minic', DATE '2023-12-20', '606060606060', 5);
 
--- Insert Contracts (pharmacy and company)
+-- contracts pharma and com
 INSERT INTO contract VALUES ('NovaHyd', 'Pfizer', DATE '2022-01-01', DATE '2024-12-31', 'Supply of general drugs including antibiotics', 'Mr. Ramesh');
 INSERT INTO contract VALUES ('NovaDelhi', 'Cipla', DATE '2023-01-01', DATE '2025-12-31', 'Antihistamine and allergy drug supply', 'Mrs. Rekha');
 INSERT INTO contract VALUES ('NovaMumbai', 'SunPharma', DATE '2021-06-01', DATE '2024-06-01', 'Fever and pain relief medicines', 'Mr. Suresh');
