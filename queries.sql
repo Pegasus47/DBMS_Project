@@ -67,72 +67,87 @@ CREATE OR REPLACE PROCEDURE get_contact (
     cname IN VARCHAR
 )
 IS
-
     CURSOR cursor IS
-        SELECT p.pharmacy_contact, 
-               pc.contact_number 
+        SELECT 
+            p.pharmacy_contact, 
+            pc.contact_number,
+            p.name 
         FROM 
             contract c
-            join pharmacy p on c.pharmacy_name = p.name
-            join pharma_comp pc on c.pharma_comp_name = pc.name
-        WHERE c.pharma_comp_name = cname; 
+            JOIN pharmacy p ON c.pharmacy_name = p.name
+            JOIN pharma_comp pc ON c.pharma_comp_name = pc.name
+        WHERE 
+            c.pharma_comp_name = cname; 
 
-    cnumber pharmacy.pharmacy_contact%TYPE;
-    pcnumber pharma_comp.contact_number%TYPE;
+    v_pharmacy_contact  pharmacy.pharmacy_contact%TYPE;
+    v_company_contact   pharma_comp.contact_number%TYPE;
+    v_pharmacy_name     pharmacy.name%TYPE;
 
-
-    begin 
-    open cursor;
+BEGIN 
+    OPEN cursor;
     
-    loop
-    fetch cursor into cnumber, pcnumber;
-    exit when cursor%NOTFOUND;
+    LOOP
+        FETCH cursor INTO v_pharmacy_contact, v_company_contact, v_pharmacy_name;
+        EXIT WHEN cursor%NOTFOUND;
 
-    DBMS_OUTPUT.PUT_LINE('Pharmacy Contact: ' || cnumber || ' Pharmaceutical Company Contact: ' || pcnumber);
-    end loop;
-    close cursor;
+        DBMS_OUTPUT.PUT_LINE(
+            'Pharmacy Name: ' || v_pharmacy_name || 
+            ' | Pharmacy Contact: ' || v_pharmacy_contact || 
+            ' | Pharma Company Contact: ' || v_company_contact
+        );
+    END LOOP;
 
+    CLOSE cursor;
 END;
 /
 
+
 CREATE OR REPLACE PROCEDURE get_patient_report (
-    p_id  IN VARCHAR,
+    p_id        IN VARCHAR2,
     start_date  IN DATE,
     end_date    IN DATE
 )
 IS
-    CURSOR cursor IS
-        SELECT 
-            p.name AS patient_name,
-            d.name AS doctor_name,
-            pr.presc_date,
-            pr.trade_name,
-            pr.qty
-        FROM prescription pr
-        JOIN patients p ON pr.aadhar_patient = p.aadhar_no
-        JOIN doctors d ON pr.aadhar_doctor = d.aadhar_no
-        WHERE pr.aadhar_patient = p_id
-          AND pr.presc_date BETWEEN start_date AND end_date
-        ORDER BY pr.presc_date;
-
-    v_patient_name   patients.name%TYPE; 
-    v_doctor_name    doctors.name%TYPE;   
-    v_date           prescription.presc_date%TYPE;
-    v_drug_name      prescription.trade_name%TYPE; 
-    v_quantity       prescription.qty%TYPE;
 BEGIN
-    OPEN cursor;
-    LOOP
-        FETCH cursor 
-        INTO v_patient_name, v_doctor_name, v_date, v_drug_name, v_quantity;
-        EXIT WHEN cursor%NOTFOUND;
+  -- Header with patient name
+  DECLARE
+    v_name patients.name%TYPE;
+  BEGIN
+    SELECT name
+      INTO v_name
+      FROM patients
+     WHERE aadhar_no = p_id;
+    DBMS_OUTPUT.PUT_LINE('Prescription report for: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('From ' || TO_CHAR(start_date,'DD-MON-YYYY')
+                         || ' to ' || TO_CHAR(end_date,'DD-MON-YYYY'));
+    DBMS_OUTPUT.PUT_LINE('--------------------------------------------------');
+  EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      DBMS_OUTPUT.PUT_LINE('No such patient: ' || p_id);
+      RETURN;
+  END;
 
-        DBMS_OUTPUT.PUT_LINE('Date: ' || v_date || 
-                             ' | Drug: ' || v_drug_name || 
-                             ' | Quantity: ' || v_quantity || 
-                             ' | Doctor: ' || v_doctor_name);
-    END LOOP;
-    CLOSE cursor;
+  -- Main aggregated loop
+  FOR rec IN (
+    SELECT
+      pr.presc_date,
+      d.name AS doctor_name,
+      LISTAGG(pr.trade_name || ' (' || pr.qty || ')', ', ')
+        WITHIN GROUP (ORDER BY pr.trade_name) AS drugs_list
+    FROM prescription pr
+    JOIN doctors d 
+      ON pr.aadhar_doctor = d.aadhar_no
+    WHERE pr.aadhar_patient BETWEEN p_id AND p_id
+      AND pr.presc_date BETWEEN start_date AND end_date
+    GROUP BY pr.presc_date, d.name
+    ORDER BY pr.presc_date
+  ) LOOP
+    DBMS_OUTPUT.PUT_LINE(
+      TO_CHAR(rec.presc_date, 'DD-MON-YYYY')
+      || ' | ' || rec.doctor_name
+      || ' | Drugs: ' || rec.drugs_list
+    );
+  END LOOP;
 END;
 /
 
