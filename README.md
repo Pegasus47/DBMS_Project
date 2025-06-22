@@ -55,7 +55,7 @@ All tables enforce referential integrity through primary and foreign key constra
 
 ## How to Use
 
-# After cloning to local 
+### After cloning to local 
 1. **Run in Oracle SQL\*Plus**
    Open Oracle SQL\*Plus and execute:
 
