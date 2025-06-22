@@ -3,7 +3,7 @@
 
 This repository contains SQL scripts to build, manage, and populate the **NOVA Pharmacy Chain** relational database system using **Oracle SQL*Plus**.
 
-## 📌 Project Overview
+## Project Overview
 
 “NOVA” is a fictional chain of pharmacies that sources drugs from various pharmaceutical companies and serves patients through licensed doctors and pharmacy outlets. This project implements a relational database to capture:
 
@@ -13,7 +13,7 @@ This repository contains SQL scripts to build, manage, and populate the **NOVA P
 - Prescriptions and patient drug history
 - Company-pharmacy contracts
 
-## 🗃️ Database Schema
+## Database Schema
 
 The database consists of the following tables:
 
@@ -31,7 +31,7 @@ The database consists of the following tables:
 
 All tables enforce referential integrity through primary and foreign key constraints, with appropriate `ON DELETE CASCADE` actions.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 
@@ -43,7 +43,7 @@ All tables enforce referential integrity through primary and foreign key constra
 
 ````
 
-## ✅ Features & Business Rules
+## Features & Business Rules
 
 - Each drug is uniquely identified by its **pharmaceutical company** and **trade name**.
 - Each **patient has one primary doctor**.
@@ -53,15 +53,10 @@ All tables enforce referential integrity through primary and foreign key constra
 - **Doctors prescribe drugs** to patients, with the latest prescription stored for any doctor-patient-date combination.
 - **Pharmaceutical companies contract with pharmacies**, with contract periods, contents, and assigned supervisors.
 
-## 🚀 How to Use
+## How to Use
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/nova-pharmacy-database.git
-   cd nova-pharmacy-database
-````
-
-2. **Run in Oracle SQL\*Plus**
+# After cloning to local 
+1. **Run in Oracle SQL\*Plus**
    Open Oracle SQL\*Plus and execute:
 
    ```sql
@@ -69,13 +64,13 @@ All tables enforce referential integrity through primary and foreign key constra
    @insert_data.sql
    ```
 
-3. **To reset the database**
+2. **To reset the database**
 
    ```sql
    @drop_schema.sql
    ```
 
-## 🔍 Sample Queries (Coming Soon)
+## List of queries 
 
 * List all drugs prescribed to a patient
 * Find pharmacies selling a particular drug at the lowest price
